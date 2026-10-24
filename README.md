@@ -15,6 +15,8 @@ python3 tools/build_prompts.py        # ① 拼装 37 份镜头提示词 → bui
 python3 tools/make_animatic.py        # ② 动态分镜 v1（分镜卡+22条TTS音轨）→ build/animatic_v1.mp4
                                       #    音轨驱动时长对齐：分镜预设143.5s → 实际186.8s
 # ③ MiniMax key 就位后（凭据只走环境变量）：
+#    内部网关已探测确认 LLM-only、无图像/视频通道（docs/decisions.md D2），
+#    外部 MiniMax key 是唯一生成路径：
 export MINIMAX_API_KEY=... MINIMAX_GROUP_ID=...
 python3 tools/minimax_pipeline.py probe            # 连通性/模型探测（先跑）
 python3 tools/minimax_pipeline.py images --limit 4 # 关键帧试产4张，人工过一致性四查
@@ -37,6 +39,7 @@ docs/
   workflows_reference.md        # 调研到的三条短剧工作流（含来源）与本方案的映射
   sop_xcanvas.md                # XCanvas 操作 SOP + 失败重试策略 + 48 小时排期
   architecture.md               # 架构设计文档（模块规格/分工/数据流/风险降级）
+  decisions.md                  # 决策记录（平台转向/网关探测证据/v0 tag 依据）
   demo_video_plan.md            # 比赛交付的 demo 视频录屏脚本
 tools/
   build_prompts.py              # 提示词拼装器（角色锚+场景锚+动作 → 最终提示词）
