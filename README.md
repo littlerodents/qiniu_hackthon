@@ -1,0 +1,69 @@
+# 琅琊榜第一集 × XCanvas（灯虹）短剧制作方案
+
+七牛第五届 1024 Hackathon · 非研发赛道 · 议题「用 XCanvas 制作琅琊榜第一集」
+
+> 结论先行：本方案把第一集改编为 **9:16 竖屏、约 2 分 30 秒、40 个镜头**的短剧，
+> 采用「剧本/角色/场景/分镜全部结构化为数据文件 + XCanvas（灯虹）负责生成 + 提示词由脚本拼装」的
+> 工程化产线。生成工具在平台里点，但一切创作决策都在本仓库里，可版本化、可复跑、可交接。
+
+## 快速开始
+
+```bash
+# 1. 拼装提示词：把角色锚 + 场景锚 + 镜头动作合成为每个镜头的最终提示词
+python3 tools/build_prompts.py          # 输出到 build/prompts/
+
+# 2. 登录灯虹（XCanvas）https://aicanvas.qnlinking.com 新建项目
+#    按 docs/sop_xcanvas.md 的顺序操作：定妆 → 跑通30秒 → 批量 → 合成
+
+# 3. 生成结果按镜头号归档回 build/，架构与过程痕迹按 PR 提交
+```
+
+## 目录结构
+
+```
+assets/
+  script/ep1_script.md          # 短剧版第一集剧本（分场 + 钩子节奏 + 改编幅度说明）
+  characters.json               # 12 张角色卡：外貌三锚点/服装锚/习惯动作/TTS 音色
+  scenes.json                   # 7 张场景卡：固定视觉锚/时段/色板/一致性注意
+  storyboard/ep1_storyboard.json# 40 镜头分镜表（景别/运镜/时长/台词/音效/生成模式）
+  prompts/style_base.md         # 全局风格基石 + 负面词 + 一致性规则
+docs/
+  workflows_reference.md        # 调研到的三条短剧工作流（含来源）与本方案的映射
+  sop_xcanvas.md                # XCanvas 操作 SOP + 失败重试策略 + 48 小时排期
+  architecture.md               # 架构设计文档（模块规格/分工/数据流/风险降级）
+  demo_video_plan.md            # 比赛交付的 demo 视频录屏脚本
+tools/
+  build_prompts.py              # 提示词拼装器（角色锚+场景锚+动作 → 最终提示词）
+build/                          # 生成产物目录（prompts/ 及后续镜头素材归档）
+```
+
+## 48 小时排期（冻结：10/26 周一 09:00）
+
+| 时间 | 里程碑 |
+|---|---|
+| 周六上午 | 定稿剧本/分镜（本仓库已完成初稿）；登录灯虹建项目；角色定妆图 4 选 1 锁定 |
+| 周六下午 | 跑通 30 秒全链路（S0 冷开场 + S1 前 2 镜：图→视频→TTS→粗剪） |
+| 周六晚 | 铺完全部 40 镜的参考图并巡检一致性；repo 初版 PR |
+| 周日 | 批量图生视频 + 分角色 TTS；失败镜头按重试策略处理；晚间粗剪全片 |
+| 周日深夜 | 精剪 + 音效/BGM/字幕；录制 demo 视频；架构文档终稿 |
+| 周一 8:00 前 | 最后 PR + tag + 提交；留 1 小时缓冲 |
+
+## 评分对照（非研发赛道：产品设计 60% / AI 工程效率 30% / 架构 10%）
+
+- **产品设计 60%**：成片质量与短剧钩子结构（每 20-30 秒一个钩子，见剧本「钩子标注」）；「短剧工厂可复制」的叙事。
+- **AI 工程效率 30%**：分镜表即代码、提示词由 `build_prompts.py` 拼装可复跑、重试策略成文、demo 录屏展示全流程。
+- **架构设计 10%**：见 `docs/architecture.md` 模块图与数据流。
+
+## 版权与用途说明
+
+《琅琊榜》原著版权归海宴及相关权利方，本作品为内部 Hackathon 演示用途的二创改编，
+不对外发布、不商用。成片片尾加二创声明字卡。
+
+## 致谢与来源
+
+- 灯虹官网（一站式 AI 影像创作平台）：https://aicanvas.qnlinking.com
+- zenstory-ai/drama-skills（MIT 开源短剧产线技能集）：https://github.com/zenstory-ai/drama-skills
+- 纳逗 AI 短剧完整教程：https://www.nadou.ai/blog/zh-CN/qa-ai-short-drama-complete-tutorial-html
+- 知乎·用 Seedance 2.0 做 AI 短剧：https://zhuanlan.zhihu.com/p/2011197758191730921
+- 搜狐·AI 漫剧完整工作流：https://timeline.sohu.com/news/GCQFjAE4GS
+- 百度百科·琅琊榜（分集剧情）：https://baike.baidu.com/item/琅琊榜/12700172

@@ -1,0 +1,373 @@
+{
+  "project": "langya-ep1-fengqi-jinling",
+  "total": 40,
+  "generated": 40,
+  "manifest": [
+    {
+      "id": "S0-01",
+      "type": "gen",
+      "chars": [],
+      "scene": "meiling",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S0-01.txt"
+    },
+    {
+      "id": "S0-02",
+      "type": "gen",
+      "chars": [],
+      "scene": "meiling",
+      "dur": 3.0,
+      "prompt_file": "build/prompts/S0-02.txt"
+    },
+    {
+      "id": "S0-03",
+      "type": "gen",
+      "chars": [],
+      "scene": "meiling",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S0-03.txt"
+    },
+    {
+      "id": "S0-04",
+      "type": "gen",
+      "chars": [],
+      "scene": "meiling",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S0-04.txt"
+    },
+    {
+      "id": "S0-05",
+      "type": "post_only",
+      "note": "黑场字卡：十二年后"
+    },
+    {
+      "id": "S1-01",
+      "type": "gen",
+      "chars": [],
+      "scene": "langya_pavilion",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S1-01.txt"
+    },
+    {
+      "id": "S1-02",
+      "type": "gen",
+      "chars": [
+        "langye_master"
+      ],
+      "scene": "langya_pavilion",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S1-02.txt"
+    },
+    {
+      "id": "S1-03",
+      "type": "gen",
+      "chars": [],
+      "scene": "langya_pavilion",
+      "dur": 3.0,
+      "prompt_file": "build/prompts/S1-03.txt"
+    },
+    {
+      "id": "S1-04",
+      "type": "gen",
+      "chars": [],
+      "scene": "langya_pavilion",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S1-04.txt"
+    },
+    {
+      "id": "S1-05",
+      "type": "gen",
+      "chars": [],
+      "scene": "langya_pavilion",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S1-05.txt"
+    },
+    {
+      "id": "S1-06",
+      "type": "gen",
+      "chars": [],
+      "scene": "langya_pavilion",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S1-06.txt"
+    },
+    {
+      "id": "S1-07",
+      "type": "gen",
+      "chars": [
+        "taizi",
+        "yuwang"
+      ],
+      "scene": "langya_pavilion",
+      "dur": 3.0,
+      "prompt_file": "build/prompts/S1-07.txt"
+    },
+    {
+      "id": "S2-01",
+      "type": "gen",
+      "chars": [],
+      "scene": "langzhou_dock",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S2-01.txt"
+    },
+    {
+      "id": "S2-02",
+      "type": "gen",
+      "chars": [
+        "jiying"
+      ],
+      "scene": "langzhou_dock",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S2-02.txt"
+    },
+    {
+      "id": "S2-03",
+      "type": "gen",
+      "chars": [
+        "meichangsu"
+      ],
+      "scene": "langzhou_dock",
+      "dur": 3.0,
+      "prompt_file": "build/prompts/S2-03.txt"
+    },
+    {
+      "id": "S2-04",
+      "type": "gen",
+      "chars": [
+        "feiliu"
+      ],
+      "scene": "langzhou_dock",
+      "dur": 2.5,
+      "prompt_file": "build/prompts/S2-04.txt"
+    },
+    {
+      "id": "S2-05",
+      "type": "gen",
+      "chars": [
+        "feiliu",
+        "jiying"
+      ],
+      "scene": "langzhou_dock",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S2-05.txt"
+    },
+    {
+      "id": "S2-06",
+      "type": "gen",
+      "chars": [
+        "ligang"
+      ],
+      "scene": "langzhou_dock",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S2-06.txt"
+    },
+    {
+      "id": "S2-07",
+      "type": "gen",
+      "chars": [
+        "jiying"
+      ],
+      "scene": "langzhou_dock",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S2-07.txt"
+    },
+    {
+      "id": "S2-08",
+      "type": "gen",
+      "chars": [
+        "meichangsu"
+      ],
+      "scene": "langzhou_dock",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S2-08.txt"
+    },
+    {
+      "id": "S2-09",
+      "type": "gen",
+      "chars": [
+        "xiaojingrui",
+        "yanyujin"
+      ],
+      "scene": "langzhou_dock",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S2-09.txt"
+    },
+    {
+      "id": "S2-10",
+      "type": "gen",
+      "chars": [
+        "meichangsu",
+        "feiliu"
+      ],
+      "scene": "langzhou_dock",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S2-10.txt"
+    },
+    {
+      "id": "S3-01",
+      "type": "gen",
+      "chars": [],
+      "scene": "jinling_city",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S3-01.txt"
+    },
+    {
+      "id": "S3-02",
+      "type": "gen",
+      "chars": [
+        "yanyujin",
+        "meichangsu"
+      ],
+      "scene": "cabin_night",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S3-02.txt"
+    },
+    {
+      "id": "S3-03",
+      "type": "gen",
+      "chars": [],
+      "scene": "jinling_city",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S3-03.txt"
+    },
+    {
+      "id": "S3-04",
+      "type": "gen",
+      "chars": [
+        "meichangsu"
+      ],
+      "scene": "cabin_night",
+      "dur": 3.0,
+      "prompt_file": "build/prompts/S3-04.txt"
+    },
+    {
+      "id": "S3-05",
+      "type": "gen",
+      "chars": [
+        "xiaojingrui"
+      ],
+      "scene": "ningguo_manor",
+      "dur": 3.0,
+      "prompt_file": "build/prompts/S3-05.txt"
+    },
+    {
+      "id": "S3-06",
+      "type": "gen",
+      "chars": [
+        "meichangsu",
+        "feiliu"
+      ],
+      "scene": "ningguo_manor",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S3-06.txt"
+    },
+    {
+      "id": "S4-01",
+      "type": "gen",
+      "chars": [
+        "liangdi"
+      ],
+      "scene": "palace_hall",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S4-01.txt"
+    },
+    {
+      "id": "S4-02",
+      "type": "gen",
+      "chars": [
+        "liangdi"
+      ],
+      "scene": "palace_hall",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S4-02.txt"
+    },
+    {
+      "id": "S4-03",
+      "type": "gen",
+      "chars": [
+        "gaozhan"
+      ],
+      "scene": "palace_hall",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S4-03.txt"
+    },
+    {
+      "id": "S4-04",
+      "type": "gen",
+      "chars": [
+        "liangdi"
+      ],
+      "scene": "palace_hall",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S4-04.txt"
+    },
+    {
+      "id": "S4-05",
+      "type": "gen",
+      "chars": [
+        "niuhuang"
+      ],
+      "scene": "palace_hall",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S4-05.txt"
+    },
+    {
+      "id": "S4-06",
+      "type": "gen",
+      "chars": [],
+      "scene": "palace_hall",
+      "dur": 3.0,
+      "prompt_file": "build/prompts/S4-06.txt"
+    },
+    {
+      "id": "S4-07",
+      "type": "gen",
+      "chars": [
+        "taizi",
+        "yuwang"
+      ],
+      "scene": "palace_hall",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S4-07.txt"
+    },
+    {
+      "id": "S4-08",
+      "type": "gen",
+      "chars": [
+        "liangdi"
+      ],
+      "scene": "palace_hall",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S4-08.txt"
+    },
+    {
+      "id": "S5-01",
+      "type": "gen",
+      "chars": [
+        "meichangsu"
+      ],
+      "scene": "ningguo_manor",
+      "dur": 4.0,
+      "prompt_file": "build/prompts/S5-01.txt"
+    },
+    {
+      "id": "S5-02",
+      "type": "gen",
+      "chars": [
+        "meichangsu"
+      ],
+      "scene": "ningguo_manor",
+      "dur": 3.5,
+      "prompt_file": "build/prompts/S5-02.txt"
+    },
+    {
+      "id": "S5-03",
+      "type": "post_only",
+      "note": "复用S0-01/02素材闪回剪辑"
+    },
+    {
+      "id": "S5-04",
+      "type": "post_only",
+      "note": "片名字卡：《琅琊榜》第一集·风起金陵｜二创改编声明｜下集钩子字幕：麒麟才子，入的是谁的局？"
+    }
+  ]
+}
