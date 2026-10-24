@@ -39,7 +39,7 @@ import urllib.request
 ROOT = Path(__file__).resolve().parent.parent
 BUILD = ROOT / "build"
 
-API_HOST = os.environ.get("MINIMAX_API_HOST", "api.minimax.chat")
+API_HOST_RAW = os.environ.get("MINIMAX_API_HOST", "api.minimax.chat")
 API_KEY = os.environ.get("MINIMAX_API_KEY", "")
 GROUP_ID = os.environ.get("MINIMAX_GROUP_ID", "")
 IMAGE_MODEL = os.environ.get("MM_IMAGE_MODEL", "image-01")
@@ -50,6 +50,17 @@ RE_HOST = re.compile(r"^[a-z0-9-]+(\.[a-z0-9-]+)*$")
 RE_SHOT = re.compile(r"^S\d-\d{2}$")
 ALLOWED_HOST_SUFFIXES = (".minimax.chat", ".minimaxi.com", ".qiniu.io", ".qiniu.com", ".qnlinking.com")
 ALLOWED_DIRS = (str(BUILD.resolve()),)
+
+
+def validated_host(raw: str) -> str:
+    """环境变量主机名在进入任何 URL 前先过白名单，阻断 SSRF 入口。"""
+    h = raw.strip().lower()
+    if not (RE_HOST.match(h) and h.endswith(ALLOWED_HOST_SUFFIXES)):
+        die("API 主机名白名单校验失败: " + h)
+    return h
+
+
+API_HOST = validated_host(API_HOST_RAW)
 
 
 def die(msg):
@@ -78,6 +89,8 @@ def check(cond, label, value):
 
 def doh_resolve(host: str) -> str:
     """AliDNS DoH 解析真实 IP（HTTPS GET，返回值经 IP 字面量+边界校验）。"""
+    if not (RE_HOST.match(host) and host.endswith(ALLOWED_HOST_SUFFIXES)):
+        die("DoH 域名白名单", host)
     with urllib.request.urlopen("https://223.5.5.5/resolve?name=" + host + "&type=A", timeout=10) as r:
         data = json.loads(r.read().decode())
     ip = [a["data"] for a in data.get("Answer", []) if a.get("type") == 1][0]

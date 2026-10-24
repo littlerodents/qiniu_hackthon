@@ -1,0 +1,11 @@
+# local tooling state (security scanner hooks, not project source)
+.mimosa/
+
+# python
+__pycache__/
+*.pyc
+
+# DoH 直连缓存（含环境相关 IP，勿入库）
+build/mm_ip_*.txt
+
+.DS_Store
