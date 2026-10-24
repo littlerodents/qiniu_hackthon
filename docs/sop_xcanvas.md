@@ -7,7 +7,19 @@ TTS、剪辑导出。**登录后请先对照本清单核实功能入口名称**�
 
 ## 第 0 步：建项目（15 分钟）
 
-1. 新建项目「琅琊榜EP1·风起金陵」，画幅选 9:16（若平台视频生成 16:9 质量明显更好，
+**平台访问与登录（2026-10-24 实测）**：
+
+- 灯虹登录方式：账号密码（邮箱/手机号）、API Key、RAM 子账号（登录页实测截图
+  `build/inspect/03_after_free_start.png`）。
+- 公司 AI 网关：xapi.qiniu.io，SSO 登录（个人 id@qiniu.com），参赛人员 $500/人
+  token 额度；灯虹「API Key 登录」即配此网关密钥。疑问咨询赛群接口人。
+- 本机网络坑：系统代理路径访问 aicanvas.qnlinking.com 会挂死（fake-IP 代理对该域
+  不通），需绕行——起一个专用 Chrome 实例直连：
+  `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --user-data-dir=/tmp/chrome-aicanvas --remote-debugging-port=9223 --host-resolver-rules="MAP aicanvas.qnlinking.com <DoH解析的真实IP>" --no-proxy-server`
+  （真实 IP 用 AliDNS DoH 查询：`curl "https://223.5.5.5/resolve?name=aicanvas.qnlinking.com&type=A"`；
+  本仓库 `tools/cdp_shot.py` / `tools/cdp_ctl.py` 可驱动该实例做截图与页面操作。）
+
+1. 登录后在灯虹新建项目「琅琊榜EP1·风起金陵」，画幅选 9:16（若平台视频生成 16:9 质量明显更好，
    降级方案：全片改 16:9 横屏，分镜表 aspect 字段同步改，构图描述不变）。
 2. 跑一遍 `python3 tools/build_prompts.py`，把 `build/prompts/` 里的提示词当作
    平台输入的唯一事实来源。
