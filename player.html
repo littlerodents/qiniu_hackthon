@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>琅琊榜 EP1 · 风起金陵 — 产线 Demo</title>
+<style>
+  :root{--bg:#101419;--panel:#1a212b;--ink:#e8e8e8;--dim:#8a93a3;--acc:#c9a86a;--red:#b05050}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:15px/1.7 "PingFang SC","Hiragino Sans GB",sans-serif}
+  header{padding:26px 32px;border-bottom:1px solid #232c38}
+  header h1{font-size:22px;font-weight:600}
+  header h1 em{color:var(--acc);font-style:normal}
+  header p{color:var(--dim);font-size:13px;margin-top:4px}
+  .src{display:inline-block;margin-left:12px;padding:2px 10px;border:1px solid #3a4656;border-radius:12px;font-size:12px;color:var(--dim)}
+  main{display:flex;gap:24px;padding:24px 32px;flex-wrap:wrap}
+  .stage{flex:0 0 340px}
+  .stage video{width:340px;border-radius:12px;background:#000;display:block}
+  .stage .hint{color:var(--dim);font-size:12px;margin-top:8px}
+  aside{flex:1 1 420px;min-width:340px}
+  aside h2{font-size:15px;color:var(--acc);margin-bottom:10px}
+  #shots{max-height:520px;overflow:auto;border:1px solid #232c38;border-radius:10px;background:var(--panel)}
+  .shot{display:flex;gap:10px;padding:9px 14px;border-bottom:1px solid #222a35;cursor:pointer;font-size:13px}
+  .shot:hover{background:#222b38}
+  .shot .id{color:var(--acc);font-family:menlo,monospace;flex:0 0 64px}
+  .shot .t{color:var(--dim);flex:0 0 92px;font-family:menlo,monospace}
+  .shot .ext{color:var(--red);font-size:11px;border:1px solid var(--red);border-radius:8px;padding:0 6px;height:fit-content;margin-top:2px}
+  section.flow{padding:8px 32px 40px}
+  section.flow h2{font-size:15px;color:var(--acc);margin:18px 0 10px}
+  ol.steps{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+  ol.steps li{background:var(--panel);border-radius:10px;padding:12px 14px;font-size:13px}
+  ol.steps b{display:block;color:var(--ink);font-size:13px;margin-bottom:3px}
+  ol.steps span{color:var(--dim);font-size:12px}
+  ol.steps li.done b::after{content:" ✓";color:#7fbf7f}
+  footer{padding:18px 32px;border-top:1px solid #232c38;color:var(--dim);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>《琅琊榜》第一集 · <em>风起金陵</em><span class="src" id="srctag">动态分镜 v1</span></h1>
+  <p>七牛第五届 1024 Hackathon · 非研发赛道 · 创作决策全部数据化（40 镜头 / 12 角色卡 / 7 场景卡）· 生成执行：MiniMax 直连产线</p>
+</header>
+<main>
+  <div class="stage">
+    <video id="v" controls playsinline width="340" height="604">
+      <source src="build/final_v2.mp4" onerror="fallback()">
+      <source src="build/animatic_v1.mp4">
+    </video>
+    <div class="hint">若浏览器拦截本地视频，请在仓库根目录运行 <code>python3 -m http.server</code> 后访问 :8000/player.html</div>
+  </div>
+  <aside>
+    <h2>镜头时间线（点击跳转 · 标红为音轨驱动拉伸）</h2>
+    <div id="shots"></div>
+  </aside>
+</main>
+<section class="flow">
+  <h2>产线（点镜头看分镜 → 关键帧 → 图生视频 → 音轨驱动合成）</h2>
+  <ol class="steps">
+    <li class="done"><b>剧本短剧化</b><span>45 分钟原剧 → 6 场 40 镜，每 20-30s 一个钩子</span></li>
+    <li class="done"><b>角色/场景资产化</b><span>12 角色卡 + 7 场景卡，外貌三锚点防跳戏</span></li>
+    <li class="done"><b>提示词工程</b><span>build_prompts.py 四段式确定性拼装，37 份</span></li>
+    <li class="done"><b>TTS 配音</b><span>22 条音轨（11 旁白 + 11 台词），分角色调参</span></li>
+    <li class="done"><b>动态分镜 v1</b><span>音轨驱动时长对齐：143.5s → 186.8s，19 镜拉伸</span></li>
+    <li id="st-img"><b>关键帧生成</b><span>MiniMax image API（待 key）</span></li>
+    <li id="st-vid"><b>图生视频</b><span>MiniMax video API（待 key）</span></li>
+    <li id="st-v2"><b>成片 v2 合成</b><span>真实镜头替换分镜卡 + 混音（待 key）</span></li>
+  </ol>
+</section>
+<footer>《琅琊榜》版权归海宴及相关权利方 · 本页为 Hackathon 内部演示的二创改编 · 仓库：~/Labs/langya-xcanvas</footer>
+<script src="build/animatic_timeline.js"></script>
+<script>
+  const v = document.getElementById('v');
+  const tag = document.getElementById('srctag');
+  function fallback(){ tag.textContent = '动态分镜 v1（final_v2 未生成）'; }
+  const box = document.getElementById('shots');
+  let t = 0;
+  const rows = (window.ANIMATIC_TIMELINE ? window.ANIMATIC_TIMELINE.shots : []).map(s => {
+    const start = t; t += s.final_dur;
+    const el = document.createElement('div');
+    el.className = 'shot';
+    el.innerHTML = '<span class="id">' + s.id + '</span>'
+      + '<span class="t">' + start.toFixed(1) + 's → ' + (start + s.final_dur).toFixed(1) + 's</span>'
+      + (s.stretched ? '<span class="ext">拉伸</span>' : '')
+      + '<span>' + (s.audio ? s.audio + ' 轨' : '无音轨') + '</span>';
+    el.onclick = () => { v.currentTime = start; v.play(); };
+    box.appendChild(el);
+    return el;
+  });
+  fetch('build/final_v2.mp4', {method:'HEAD'}).then(r => {
+    if (r.ok) { document.getElementById('st-img').classList.add('done');
+                document.getElementById('st-vid').classList.add('done');
+                document.getElementById('st-v2').classList.add('done');
+                tag.textContent = '成片 v2'; }
+  }).catch(()=>{});
+</script>
+</body>
+</html>

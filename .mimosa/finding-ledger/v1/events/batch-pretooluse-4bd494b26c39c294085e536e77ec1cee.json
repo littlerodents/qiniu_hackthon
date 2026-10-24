@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "mimosa-finding-ledger-batch/v1",
+  "batchId": "pretooluse-4bd494b26c39c294085e536e77ec1cee",
+  "runId": null,
+  "runStatus": "completed",
+  "coverage": {
+    "status": "complete",
+    "reasons": []
+  },
+  "source": {
+    "component": "zcode-hook",
+    "operationId": "PreToolUse"
+  },
+  "revision": null,
+  "diffHash": null,
+  "rulesVersion": null,
+  "sessionHash": "f57be02b2c96d0dcad7467cff9780e0775b07caac8fdd892b45f1b7ae4ca96fc",
+  "reportRef": null,
+  "events": [
+    {
+      "eventId": "hook-08f983abc50943fab2a336f6e3e1028e",
+      "findingId": "mimosa-e8156dbc20e956347d69caed",
+      "type": "finding_blocked",
+      "at": "2026-10-24T16:21:29.422Z",
+      "identity": {
+        "projectRelativeFile": "tools/minimax_pipeline.py",
+        "ruleId": "security",
+        "codeEvidenceHash": "89db4f8a210f942f4cf8596a29b5d3b037f0f3f12792fdc09dd6274d75a54d2e",
+        "confidence": "stable"
+      },
+      "scope": "direct",
+      "line": 17,
+      "endLine": 17,
+      "reasonCode": "deny",
+      "reportedToAgent": true,
+      "evidence": {
+        "kind": "source",
+        "boundary": "candidate",
+        "producer": "deterministic",
+        "evidenceHash": "89db4f8a210f942f4cf8596a29b5d3b037f0f3f12792fdc09dd6274d75a54d2e"
+      },
+      "sequence": 0
+    }
+  ],
+  "observedFindingIds": [],
+  "verifiedFiles": [],
+  "recordedAt": "2026-10-24T16:21:29.672Z"
+}

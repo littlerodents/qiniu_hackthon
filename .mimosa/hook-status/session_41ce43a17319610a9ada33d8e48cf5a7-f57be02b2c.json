@@ -1,14 +1,14 @@
 {
   "schemaVersion": "mimosa-hook-status/v1",
-  "recordedAt": "2026-10-24T15:41:21.452Z",
+  "recordedAt": "2026-10-24T16:28:00.249Z",
   "sessionId": "session_41ce43a17319610a9ada33d8e48cf5a7",
   "event": "PostToolUse",
   "toolName": "Edit",
-  "file": "docs/sop_xcanvas.md",
+  "file": "docs/architecture.md",
   "outcome": "clear",
   "coverage": "complete",
   "findingCount": 0,
-  "durationMs": 4,
+  "durationMs": 3,
   "hostState": "hook_complete",
   "reportHint": ".mimosa/reports/"
 }

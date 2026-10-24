@@ -2,20 +2,26 @@
 
 七牛第五届 1024 Hackathon · 非研发赛道 · 议题「用 XCanvas 制作琅琊榜第一集」
 
-> 结论先行：本方案把第一集改编为 **9:16 竖屏、约 2 分 30 秒、40 个镜头**的短剧，
-> 采用「剧本/角色/场景/分镜全部结构化为数据文件 + XCanvas（灯虹）负责生成 + 提示词由脚本拼装」的
-> 工程化产线。生成工具在平台里点，但一切创作决策都在本仓库里，可版本化、可复跑、可交接。
+> 结论先行：本方案把第一集改编为 **9:16 竖屏、40 个镜头、音轨驱动 186.8 秒**的短剧，
+> 采用「剧本/角色/场景/分镜全部结构化为数据文件 + 提示词由脚本拼装 + 生成执行」的
+> 工程化产线。**2026-10-25 转向记录**：指定平台 XCanvas/灯虹在参赛网络环境下不可达
+> （代理阻断 + 网关 key 无法登录，实测见 docs/sop_xcanvas.md），经 owner 决策改为
+> **MiniMax API 直连自建产线**——工具链全部开源可复现，反而强化「AI 工程效率」叙事。
 
 ## 快速开始
 
 ```bash
-# 1. 拼装提示词：把角色锚 + 场景锚 + 镜头动作合成为每个镜头的最终提示词
-python3 tools/build_prompts.py          # 输出到 build/prompts/
-
-# 2. 登录灯虹（XCanvas）https://aicanvas.qnlinking.com 新建项目
-#    按 docs/sop_xcanvas.md 的顺序操作：定妆 → 跑通30秒 → 批量 → 合成
-
-# 3. 生成结果按镜头号归档回 build/，架构与过程痕迹按 PR 提交
+python3 tools/build_prompts.py        # ① 拼装 37 份镜头提示词 → build/prompts/
+python3 tools/make_animatic.py        # ② 动态分镜 v1（分镜卡+22条TTS音轨）→ build/animatic_v1.mp4
+                                      #    音轨驱动时长对齐：分镜预设143.5s → 实际186.8s
+# ③ MiniMax key 就位后（凭据只走环境变量）：
+export MINIMAX_API_KEY=... MINIMAX_GROUP_ID=...
+python3 tools/minimax_pipeline.py probe            # 连通性/模型探测（先跑）
+python3 tools/minimax_pipeline.py images --limit 4 # 关键帧试产4张，人工过一致性四查
+python3 tools/minimax_pipeline.py videos --limit 4 # 图生视频试产
+python3 tools/minimax_pipeline.py images && python3 tools/minimax_pipeline.py videos
+python3 tools/minimax_pipeline.py assemble2        # ④ 成片 → build/final_v2.mp4
+open player.html                      # ⑤ 交付网页（播放器+镜头时间线+产线看板）
 ```
 
 ## 目录结构
