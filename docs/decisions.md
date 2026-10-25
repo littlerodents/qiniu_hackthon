@@ -35,3 +35,19 @@
 规则「已有 codebase 须先打 v0 tag」针对赛前已有代码。本仓库首 commit 于
 10-24（赛中）。为覆盖任何口径的解释，仍将 `v0` 打在首 commit（方案包基线），
 此后全部演进经 PR 合入，协同痕迹完整。
+
+## D4 · 2026-10-26 凌晨：ModelLink 网关接入实录，h3-max 定位纠正 = 视频模型
+
+owner 提供 ModelLink（`api.qnaigc.com`）正式 key 后，实测纠正了一个关键认知：
+
+| 事实 | 证据 |
+|---|---|
+| `minimax/minimax-h3-max` 在该网关是**视频生成模型**，非对话模型 | 端点 `POST /queue/minimax/h3-max/{text-to-video, image-to-video, reference-to-video}`（FAL 协议，`Authorization: Key`）；此前用 chat 接口调它得到 502 的原因即此 |
+| D2 的「LLM-only」结论对旧订阅 key 成立，对新 key 不成立 | 新 key 走 `docs.modelink.ai` 文档的专用生成端点，`/v1/models` 列表不含生成模型（易误导） |
+| 关键帧：`POST /bypass/openai/v1/images/generations`（gpt-image-2，1024×1536，仅返回 b64_json） | 37/37 张生成成功，~1 分钟/张 |
+| 图生视频被阻：`image_url` 只收公网 URL，data URI 与 tmpfiles.org 均被拒（"media url unreachable / blocking datacenter IPs"）；错误信息提示 `mm_file://{file_id}` 或自有 Kodo | 网关无公开直传端点（`/v1/files` 仅 URL 导入或自有 kodo 字段） |
+| **决策：全片走 text-to-video**（提示词四段式本身携带角色锚+场景锚） | 37/37 镜成功，768×1344→1080×1920 合成，`concurrent_limit` 限流靠指数退避自愈 |
+| 结果：`build/final_v2.mp4`（186.75s，QC pass） | 37/40 真实镜头 + 3 纯后期字卡镜，音轨时间线对齐不变 |
+
+经验教训：聚合网关的 `/v1/models` 不枚举生成模型；模型的真实能力要看端点族
+（chat 队列 vs bypass 图像 vs queue 视频），不能只看模型名。
