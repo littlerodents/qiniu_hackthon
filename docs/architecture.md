@@ -93,7 +93,7 @@ python3 tools/build_prompts.py    # 无第三方依赖，Python 3.9+；输出与
 | 22 条 TTS 音轨 | ✅ 完成（分角色调参） |
 | 关键帧 37 张（gpt-image-2） | ✅ `build/frames_jpg/`（PNG 母版本地） |
 | 镜头视频 37 条（minimax-h3-max t2v） | ✅ 768×1344，断点续跑+限流退避 |
-| 正式成片 | ✅ `build/final_v2.mp4`（186.75s / 1080×1920 / QC pass，37/40 真实镜头） |
+| 正式成片 | ✅ `build/final_v2.mp4`（186.75s / 1080×1920 / QC pass，39/40 真实镜头，唯一纯后期镜=片尾二创声明字卡） |
 | 动态分镜 v1（对照版） | ✅ `build/animatic_v1.mp4` |
 | demo 视频（72.3s） | ✅ `build/demo.mp4`（make_demo.py 可复跑） |
 | 交付网页 | ✅ `player.html`（自动优先播放 v2） |
