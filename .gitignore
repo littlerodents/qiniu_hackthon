@@ -11,4 +11,11 @@ build/mm_ip_*.txt
 # demo 中间产物（卡片/切片，可由 make_demo.py 复生成）
 build/demo_work/
 
+# 大体积本地产物：原始镜头视频/母版成片/PNG 关键帧（入库版本为压缩版）
+build/shots/
+build/v2_parts/
+build/final_v2_master.mp4
+build/frames/*.png
+build/frames/*.url
+
 .DS_Store
