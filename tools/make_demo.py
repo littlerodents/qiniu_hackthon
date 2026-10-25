@@ -129,7 +129,8 @@ def main():
                ("网关探测留档 decisions.md", ["内部网关 LLM-only，证据可复核（D2）"])],
               "分层架构的意义：换掉的只是执行层，资产与决策全部保值")
     make_card("card6.png", "七牛第五届 1024 Hackathon", "琅琊榜第一集 × 短剧产线",
-              [("GitHub", ["littlerodents/langya-xcanvas（源码/运行说明/架构文档）"]),
+              [("GitHub", ["github.com/littlerodents/qiniu_hackthon",
+                           "源码 · 运行说明 · 架构文档 · PR 痕迹"]),
                ("架构六层 · 1/2/3 人分工档 · 决策记录", ["PR 痕迹 · v0 tag · QC 报告齐备"]),
                ("二创声明", ["原著版权归海宴及相关权利方，仅内部演示用途"])],
               "Talk is cheap — show me what you build")
