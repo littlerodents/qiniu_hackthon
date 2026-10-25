@@ -8,4 +8,7 @@ __pycache__/
 # DoH 直连缓存（含环境相关 IP，勿入库）
 build/mm_ip_*.txt
 
+# demo 中间产物（卡片/切片，可由 make_demo.py 复生成）
+build/demo_work/
+
 .DS_Store
