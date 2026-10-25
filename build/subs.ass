@@ -1,0 +1,46 @@
+[Script Info]
+Title: final_v2
+ScriptType: v4.00+
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+YCbCr Matrix: TV.709
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Hiragino Sans GB,63,&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5.38,2.3,2,65,65,288,1
+Style: Note,Hiragino Sans GB,39,&H0066D9FF,&H0066D9FF,&H00000000,&H80000000,0,0,0,0,100,100,0,0,3,7,0,8,65,65,86,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+
+Dialogue: 0,0:00:00.30,0:00:04.68,Default,,0,0,0,,十二年前，梅岭一战——
+Dialogue: 0,0:00:08.40,0:00:13.28,Default,,0,0,0,,赤焰军七万将士——含冤，埋骨
+Dialogue: 0,0:00:21.50,0:00:24.78,Default,,0,0,0,,十二年后，琅琊阁
+Dialogue: 0,0:00:32.00,0:00:36.38,Default,,0,0,0,,麒麟才子，得之可得天下
+Dialogue: 0,0:00:40.60,0:00:44.98,Default,,0,0,0,,同一个答案，送进了两个王府
+Dialogue: 0,0:00:48.70,0:00:52.40,Default,,0,0,0,,廊州，江左盟的地界
+Dialogue: 0,0:00:53.10,0:00:56.83,Default,,0,0,0,,季赢：双刹帮的水，也敢闯
+Dialogue: 0,0:01:10.50,0:01:13.30,Default,,0,0,0,,季赢：江、江左盟
+Dialogue: 0,0:01:13.36,0:01:15.96,Default,,0,0,0,,季赢有眼无珠
+Dialogue: 0,0:01:16.70,0:01:20.07,Default,,0,0,0,,梅长苏：起来 江面风大，
+Dialogue: 0,0:01:20.13,0:01:22.41,Default,,0,0,0,,别跪坏了膝盖
+Dialogue: 0,0:01:23.10,0:01:25.18,Default,,0,0,0,,萧景睿：苏兄
+Dialogue: 0,0:01:25.68,0:01:29.21,Default,,0,0,0,,言豫津：这位就是  麒麟才子
+Dialogue: 0,0:01:29.90,0:01:34.50,Default,,0,0,0,,琅琊榜首，江左梅郎——进京了
+Dialogue: 0,0:01:39.20,0:01:43.57,Default,,0,0,0,,言豫津：先生既入金陵，\N总得有个名目
+Dialogue: 0,0:01:44.07,0:01:47.61,Default,,0,0,0,,梅长苏：就叫——苏哲
+Dialogue: 0,0:01:48.30,0:01:52.00,Default,,0,0,0,,大渝的使节，也进了京
+Dialogue: 0,0:01:55.70,0:01:58.48,Default,,0,0,0,,萧景睿：苏先生，请
+Dialogue: 0,0:02:10.20,0:02:13.87,Default,,0,0,0,,高湛：陛下，\N云南王府的折子——
+Dialogue: 0,0:02:13.93,0:02:15.05,Default,,0,0,0,,又到了
+Dialogue: 0,0:02:15.70,0:02:18.72,Default,,0,0,0,,梁帝：十万铁骑
+Dialogue: 0,0:02:18.78,0:02:21.51,Default,,0,0,0,,她的翅膀，硬了
+Dialogue: 0,0:02:21.57,0:02:26.78,Default,,0,0,0,,迎凤楼设擂——为郡主择婿
+Dialogue: 0,0:02:31.00,0:02:34.90,Default,,0,0,0,,一场择婿，搅动满京城
+Dialogue: 0,0:02:35.60,0:02:40.20,Default,,0,0,0,,而两位王爷，要抢的是同一个人
+Dialogue: 0,0:02:40.90,0:02:43.52,Default,,0,0,0,,梁帝：麒麟才子
+Dialogue: 0,0:02:43.58,0:02:48.23,Default,,0,0,0,,得之可得天下 朕，倒要看看
+Dialogue: 0,0:02:56.40,0:02:59.48,Default,,0,0,0,,他回来了 带着——
+Dialogue: 0,0:02:59.54,0:03:02.40,Default,,0,0,0,,七万人的名字
