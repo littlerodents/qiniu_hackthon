@@ -91,8 +91,10 @@ python3 tools/build_prompts.py    # 无第三方依赖，Python 3.9+；输出与
 |---|---|
 | 剧本/角色卡/场景卡/分镜表/提示词 | ✅ 全部入库，可复跑 |
 | 22 条 TTS 音轨 | ✅ 完成（分角色调参） |
-| 动态分镜 v1（186.8s，音画齐平） | ✅ `build/animatic_v1.mp4` |
+| 关键帧 37 张（gpt-image-2） | ✅ `build/frames_jpg/`（PNG 母版本地） |
+| 镜头视频 37 条（minimax-h3-max t2v） | ✅ 768×1344，断点续跑+限流退避 |
+| 正式成片 | ✅ `build/final_v2.mp4`（186.75s / 1080×1920 / QC pass，37/40 真实镜头） |
+| 动态分镜 v1（对照版） | ✅ `build/animatic_v1.mp4` |
 | demo 视频（72.3s） | ✅ `build/demo.mp4`（make_demo.py 可复跑） |
-| 交付网页 | ✅ `player.html` |
-| 网关探测定谳（LLM-only 证据） | ✅ `tools/probe_gateway.py` + `docs/decisions.md` D2 |
-| 关键帧 + 图生视频 + final_v2 | ⏳ 唯一等待项：外部 MiniMax key（内部网关无生成通道，见 D2） |
+| 交付网页 | ✅ `player.html`（自动优先播放 v2） |
+| 网关探测定谳（LLM-only 证据） | ✅ `tools/probe_gateway.py` + `docs/decisions.md` D2/D4 |
