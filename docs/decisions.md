@@ -47,7 +47,7 @@ owner 提供 ModelLink（`api.qnaigc.com`）正式 key 后，实测纠正了一�
 | 关键帧：`POST /bypass/openai/v1/images/generations`（gpt-image-2，1024×1536，仅返回 b64_json） | 37/37 张生成成功，~1 分钟/张 |
 | 图生视频被阻：`image_url` 只收公网 URL，data URI 与 tmpfiles.org 均被拒（"media url unreachable / blocking datacenter IPs"）；错误信息提示 `mm_file://{file_id}` 或自有 Kodo | 网关无公开直传端点（`/v1/files` 仅 URL 导入或自有 kodo 字段） |
 | **决策：全片走 text-to-video**（提示词四段式本身携带角色锚+场景锚） | 37/37 镜成功，768×1344→1080×1920 合成，`concurrent_limit` 限流靠指数退避自愈 |
-| 结果：`build/final_v2.mp4`（186.75s，QC pass） | 37/40 真实镜头 + 3 纯后期字卡镜，音轨时间线对齐不变 |
+| 结果：`build/final_v2.mp4`（186.75s，QC pass） | 39/40 真实镜头；S0-05/S5-03 初版误用分镜卡入正片（0:17/2:56 处跳戏），验收时发现后补拍真实镜头替换；唯一纯后期镜=片尾二创声明字卡（AI 渲染不了干净中文，故意保留） |
 
 经验教训：聚合网关的 `/v1/models` 不枚举生成模型；模型的真实能力要看端点族
 （chat 队列 vs bypass 图像 vs queue 视频），不能只看模型名。
