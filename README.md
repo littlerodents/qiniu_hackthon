@@ -24,6 +24,7 @@ python3 tools/minimax_pipeline.py videos --limit 4 # 图生视频试产
 python3 tools/minimax_pipeline.py images && python3 tools/minimax_pipeline.py videos
 python3 tools/minimax_pipeline.py assemble2        # ④ 成片 → build/final_v2.mp4
 open player.html                      # ⑤ 交付网页（播放器+镜头时间线+产线看板）
+open build/demo.mp4                   # ⑥ 比赛交付 demo（72s：成片高亮+方法论+降级叙事，tools/make_demo.py 可复跑）
 ```
 
 ## 目录结构
