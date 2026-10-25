@@ -22,10 +22,12 @@ flowchart LR
   C[assets/scenes<br/>7 场景卡] --> E
   D --> E
   E --> F[build/prompts/*<br/>每镜最终提示词]
-  F --> G[XCanvas/灯虹<br/>图生成·图生视频·TTS·剪辑]
-  G --> H[build/ 成片与素材归档]
-  G --> I[docs/demo_video_plan<br/>demo 视频与交付]
-  H --> J[GitHub 交付<br/>源码+文档+demo]
+  T[cloud TTS<br/>22 条音轨已就绪] --> M[tools/make_animatic.py<br/>音轨驱动时间线对齐]
+  F --> G[tools/minimax_pipeline.py<br/>关键帧→图生视频（待 key 点火）]
+  G --> H[build/ 成片归档<br/>animatic_v1 已交付 · final_v2 待 key]
+  M --> H
+  H --> I[build/demo.mp4 + player.html<br/>demo 视频与交付]
+  I --> J[GitHub 交付<br/>源码+文档+demo+PR 痕迹]
 ```
 
 ## 2. 模块规格
@@ -37,8 +39,9 @@ flowchart LR
 | 场景资产层 | `assets/scenes.json` | 7 卡；scene_prompt 锁定时段/色板/光线 | 剧本 → 场景视觉设定 |
 | 分镜层 | `assets/storyboard/` | 40 镜；每镜 12 字段（景别/运镜/时长/台词/fallback…）；schema 版本化 | 剧本+资产 → 可执行镜头单 |
 | 提示词层 | `tools/build_prompts.py` | 风格基石+场景锚+角色锚+可变段 四段式拼装；引用校验 | 数据文件 → `build/prompts/` |
-| 生成层 | XCanvas（外部） | 关键帧→图生视频→TTS；一致性四查；重 roll≤3 | 提示词 → 镜头素材 |
-| 合成层 | XCanvas/本地剪辑 | 粗剪→精剪→声画→字幕导出 | 镜头素材 → 成片 |
+| 配音层 | cloud TTS（已就绪） | 22 条音轨（11 旁白+11 台词）分角色调语速/音高，48kHz | 剧本台词 → `build/audio/` |
+| 生成层 | `tools/minimax_pipeline.py`（待 key） | probe→images(37)→videos 断点续传；SSRF 加固；DoH 直连绕代理 | 提示词 → 关键帧/镜头视频 |
+| 合成层 | `make_animatic.py` + `assemble2` | 音轨驱动时长对齐（143.5s→186.8s，19 镜自动拉伸）；key 后以真实镜头替换分镜卡 | 镜头素材+音轨 → 成片 |
 | 交付层 | GitHub | 源码+运行说明+本文档+demo 视频，PR 全程留痕 | 全部 → 比赛提交 |
 
 ## 3. 数据契约（关键 schema 字段）
@@ -79,3 +82,17 @@ flowchart LR
 ```bash
 python3 tools/build_prompts.py    # 无第三方依赖，Python 3.9+；输出与校验报告
 ```
+
+其余子命令（make_animatic / minimax_pipeline / make_demo）见 README「快速开始」。
+
+## 8. 当前交付状态（2026-10-25）
+
+| 交付物 | 状态 |
+|---|---|
+| 剧本/角色卡/场景卡/分镜表/提示词 | ✅ 全部入库，可复跑 |
+| 22 条 TTS 音轨 | ✅ 完成（分角色调参） |
+| 动态分镜 v1（186.8s，音画齐平） | ✅ `build/animatic_v1.mp4` |
+| demo 视频（72.3s） | ✅ `build/demo.mp4`（make_demo.py 可复跑） |
+| 交付网页 | ✅ `player.html` |
+| 网关探测定谳（LLM-only 证据） | ✅ `tools/probe_gateway.py` + `docs/decisions.md` D2 |
+| 关键帧 + 图生视频 + final_v2 | ⏳ 唯一等待项：外部 MiniMax key（内部网关无生成通道，见 D2） |
